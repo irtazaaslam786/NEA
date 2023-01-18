@@ -1,0 +1,55 @@
+import sqlite3
+
+class DatabaseController():
+    
+    def __init__(self, filePath):
+        try:
+            self.connection = sqlite3.connect(filePath)
+            self.cursor = self.connection.cursor()
+            print("Database initialised")
+        except sqlite3.Error as error:
+            print("Error initialising database")
+            print(error)
+            
+    def executeSelectQuery(self, query):
+        results = self.cursor.execute(query)
+        resultSet = []
+        for row in results:
+            resultSet.append(row)
+            #each row is a tuple
+        return resultSet
+        
+    def executeQuery(self, query):
+        self.cursor.execute(query)
+        self.connection.commit()
+            
+    def closeDatabase(self):
+        self.cursor.close()
+        self.connection.close()
+        print("Database closed")
+
+    def createEmployeeTable(self):
+        try:
+            self.connection.execute("""CREATE TABLE Employees(
+                                    EmployeeID integer auto_increment primary key, 
+                                    firstName varchar(20) NOT NULL, 
+                                    surname varchar(20) NOT NULL, 
+                                    age integer NOT NULL, 
+                                    department varchar(20) NOT NULL
+                                    )""")
+        except sqlite3.Error as error:
+            print(error)
+            self.closeDatabase()
+
+    def createEmployee(self, firstName, surname, age, department):
+        query = "INSERT INTO Employees (firstName, surname, age, department) VALUES (\""
+        query += firstName + "\", \"" + surname + "\", " + str(age) + ", \"" + department + "\");"
+        print(query)
+        self.executeQuery(query)
+
+dbController = DatabaseController("myDatabase.db")
+#dbController.executeQuery("CREATE TABLE test(testColumn);")
+#dbController.createEmployeeTable()
+dbController.createEmployee("Computer", "Science", 12, "CS")
+print(dbController.executeSelectQuery("SELECT * FROM Employees"))
+dbController.closeDatabase()
