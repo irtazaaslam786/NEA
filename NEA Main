@@ -1,0 +1,122 @@
+from ast import Try
+import sqlite3
+
+class DatabaseController():
+    
+    def __init__(self, filePath):
+        try:
+            self.connection = sqlite3.connect(filePath)
+            self.cursor = self.connection.cursor()
+            print("Database initialised")
+        except sqlite3.Error as error:
+            print("Error initialising database")
+            print(error)
+            
+    def executeSelectQuery(self, query):
+        results = self.cursor.execute(query)
+        resultSet = []
+        for row in results:
+            resultSet.append(row)
+            #each row is a tuple
+        return resultSet
+        
+    def executeQuery(self, query):
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(query)
+        self.connection.commit()
+        self.cursor.close()
+
+    def closeDatabase(self):
+        self.connection.close()
+        print("Database closed")
+
+    def createEmployeeTable(self):
+        try:
+            self.connection.execute("""CREATE TABLE Employees(
+                                    EmployeeID integer auto_increment primary key, 
+                                    firstName varchar(20) NOT NULL, 
+                                    surname varchar(20) NOT NULL, 
+                                    age integer NOT NULL, 
+                                    department varchar(20) NOT NULL
+                                    )""")
+        except sqlite3.Error as error:
+            print(error)
+            self.closeDatabase()
+
+    def createEmployee(self, firstName, surname, age, department):
+        query = "INSERT INTO Employees (firstName, surname, age, department) VALUES (\""
+        query += firstName + "\", \"" + surname + "\", " + str(age) + ", \"" + department + "\");"
+        print(query)
+        self.executeQuery(query)
+
+
+    def createShiftsTable(self):
+        try:
+            self.connection.execute("""CREATE TABLE Shifts(
+                                    ShiftID integer auto_increment primary key NOT NULL, 
+                                    EmployeeID integer NOT NULL,
+                                    StartTime varchar(5) NOT NULL, 
+                                    endTime varchar(5) NOT NULL, 
+                                    datetoday varchar(10) NOT NULL, 
+                                    Breaktime varchar(5) NOT NULL
+                                    )""")
+        except sqlite3.Error as error:
+             print(error)
+             self.closeDatabase()
+
+
+
+    # times: "HH:MM" (5 characters)
+    # DAte : "DD:MM:YYYY" (10 characters)
+    def createShift(self, employeeID, startTime, endTime, date, breakTime):
+        query = "INSERT INTO Shifts (employeeID, startTime, endTime, datetoday, breakTime) VALUES ("
+        query += employeeID + ", \"" + startTime + "\", " + endTime + ", \"" + date + "\", \"" +breakTime+ "\");"
+        print(query)
+        self.executeQuery(query)
+
+dbController = DatabaseController("myDatabase.db")
+#dbController.executeQuery("CREATE TABLE test(testColumn);")
+#dbController.createEmployeeTable()
+#dbController.createShiftsTable()
+dbController.createEmployee("Computer", "Science", 12, "CS")
+dbController.createShift("1","11:00", "20:00", "11:01:2023", "14:30")
+print(dbController.executeSelectQuery("SELECT * FROM Shifts"))
+print(dbController.executeSelectQuery("SELECT * FROM Employees"))
+dbController.closeDatabase()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from nea import DatabaseController
+
+class Scheduler:
+    def __init__(self, filename):
+        self.DBcontroller = DatabaseController()
+        
+    def getShiftsForDay(self, date):
+        query = """SELECT Employees.firstName, Employees.surname, Shifts.startTime, Shifts.endTime, Shifts.breakTime 
+        FROM Shifts JOIN Employees 
+        ON Shifts.EmployeeID = Employees.EmployeeID 
+        WHERE Shifts.date = """ + date + " ORDER BY Shifts.startTime, Employees.firstName" + ";"
+        return self.DBcontroller.executeSelectQuery(query);
+    
+    def addEmployee(self, firstName, surname, age, department):
+        self.DBcontroller.createEmployee(firstName, surname, age, department)
+
+    def addShift(self, employeeID, startTime, endTime, date, breakTime):
+        self.DBcontroller.createShift(employeeID, startTime, endTime, date, breakTime)
+         
+    
+    
+scheduler = Scheduler("myDatabase.db")
+print(scheduler.getShiftsForDay())
