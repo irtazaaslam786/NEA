@@ -9,7 +9,7 @@ class Scheduler:
         FROM Shifts JOIN Employees 
         ON Shifts.EmployeeID = Employees.EmployeeID 
         WHERE Shifts.date = \"""" + date + "\";"
-        return self.DBcontroller.executeSelectQuery(query);
+        return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
 
     def addEmployee(self, firstName, surname, age, department):
         self.DBcontroller.createEmployee(firstName, surname, age, department)
@@ -21,7 +21,5 @@ class Scheduler:
         self.DBcontroller.closeDatabase()
 
     def getEmployeeData(self, ):
-        query = """SELECT * from Employees"""
-        return self.DBcontroller.executeSelectQuery(query);
-
-  
+        query = """SELECT * from Employees;"""
+        return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)

@@ -69,6 +69,9 @@ class DatabaseController():
         query += firstName + "\", \"" + surname + "\", " + str(age) + ", \"" + department + "\");"
         self.executeQuery(query)
 
+    def getColumnNames(self, query):
+        cursor = self.connection.execute(query)
+        return [data[0] for data in cursor.description]
 
     def createShiftsTable(self):
         try:
