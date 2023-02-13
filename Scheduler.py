@@ -20,6 +20,6 @@ class Scheduler:
     def closeDatabase(self):
         self.DBcontroller.closeDatabase()
 
-    def getEmployeeData(self, ):
+    def getEmployeeData(self):
         query = """SELECT * from Employees;"""
         return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
