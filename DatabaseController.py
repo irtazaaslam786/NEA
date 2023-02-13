@@ -93,6 +93,6 @@ class DatabaseController():
     # Date : "DD:MM:YYYY" (10 characters)
     def createShift(self, employeeID, startTime, endTime, date, breakTime):
         query = "INSERT INTO Shifts (employeeID, startTime, endTime, date, breakTime) VALUES ("
-        query += employeeID + ", \"" + startTime + "\", \"" + endTime + "\", \"" + date + "\", \"" +breakTime+ "\");"
+        query += str(employeeID) + ", \"" + startTime + "\", \"" + endTime + "\", \"" + date + "\", \"" +breakTime+ "\");"
         self.executeQuery(query)
 

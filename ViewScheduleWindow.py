@@ -10,10 +10,11 @@ class ViewScheduleWindow(Window):
 
         self.createScheduleTable()
         self.table.pack()
+        print(self.getDate())
 
     def createScheduleTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make size dynamic
-        shiftData, columns = self.scheduler.getShiftsForDay(self.getDate)
-        table.headers = columns
-        table.set_sheet_data(shiftData)
+        shiftData, columns = self.scheduler.getShiftsForDay(self.getDate())
+        self.table.headers = columns
+        self.table.set_sheet_data(shiftData)
 
