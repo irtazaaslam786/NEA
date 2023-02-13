@@ -19,13 +19,13 @@ def showWindow(oldWindow):
 
 #add widget functionality here
 def createAddWindow():
-    addWindow = AddWindow(root, "500x300")
+    addWindow = AddWindow(root, "500x300", scheduler)
 
 def createViewWindow():
-    viewWindow = ViewWindow(root, "500x300")
+    viewWindow = ViewWindow(root, "500x300", scheduler)
 
 def createDeleteWindow():
-    deleteWindow = DeleteWindow(root, "500x300")
+    deleteWindow = DeleteWindow(root, "500x300", scheduler)
 
 root = tk.Tk() #root window
 root.protocol("WM_DELETE_WINDOW", main_exit_handler)
