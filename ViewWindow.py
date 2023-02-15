@@ -1,6 +1,9 @@
 import tkinter as tk
+
 from Window import *
 from ViewScheduleWindow import *
+from ViewEmployeesWindow import *
+from ViewHolidaysWindow import *
 
 class ViewWindow(Window):
     def __init__(self, master, geometry, scheduler):
@@ -27,7 +30,7 @@ class ViewWindow(Window):
         self.holidayButton.pack()
 
     def createViewHolidayWindow(self):
-        viewHolidayWindow = ViewHolidayWindow(self.window, "500x300", self.holiday)
+        viewHolidayWindow = ViewHolidaysWindow(self.window, "500x300", self.scheduler)
 
     def createViewEmployeesWindow(self):
-        viewEmployeesWindow = ViewEmployeesWindow(self.window, "500x300", self.employees)
+        viewEmployeesWindow = ViewEmployeesWindow(self.window, "500x300", self.scheduler)

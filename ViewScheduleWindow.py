@@ -10,7 +10,6 @@ class ViewScheduleWindow(Window):
 
         self.createScheduleTable()
         self.table.pack()
-        print(self.getDate())
 
     def createScheduleTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make size dynamic

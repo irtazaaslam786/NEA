@@ -1,18 +1,17 @@
 import tkinter as tk
 import tksheet
-
 from Window import *
 
-class ViewEmployeesWindow(Window):
+class ViewHolidaysWindow(Window):
     def __init__(self, master, geometry, scheduler):
         super().__init__(master, geometry, scheduler)
-        self.window.title("View Employees")
+        self.window.title("View Holidays")
 
-        self.createEmployeesTable()
+        self.createHolidaysTable()
         self.table.pack()
 
-    def createEmployeesTable(self):
+    def createHolidaysTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make dimensions dynamic
-        employeeData, columns = self.scheduler.getEmployeeData()
+        holidayData, columns = self.scheduler.getHolidays()
         self.table.headers = columns
-        self.table.set_sheet_data(employeeData)
+        self.table.set_sheet_data(holidayData)

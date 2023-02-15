@@ -23,3 +23,10 @@ class Scheduler:
     def getEmployeeData(self):
         query = """SELECT * from Employees;"""
         return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
+
+    def getHolidays(self):
+        query = """SELECT Holidays.HolidayID, Employees.firstName, Employees.surname, Holidays.startDate, Holidays.endDate 
+        FROM Holidays JOIN Employees
+        ON Holidays.EmployeeID = Employees.EmployeeID
+        ORDER BY Holidays.startDate ASC;"""
+        return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)

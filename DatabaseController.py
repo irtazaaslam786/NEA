@@ -2,6 +2,7 @@ import sqlite3
 
 CHECK_IF_EMPLOYEES_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='Employees'"
 CHECK_IF_SHIFTS_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='Shifts'"
+CHECK_IF_HOLIDAYS_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='Holidays'"
 
 class DatabaseController():
     
@@ -20,6 +21,11 @@ class DatabaseController():
             if cursor.fetchall() == []:  #Shifts table does not exist
                 self.createShiftsTable()
                 print("Shifts table successfully created")
+                
+            cursor.execute(CHECK_IF_HOLIDAYS_EXISTS)
+            if cursor.fetchall() == []:  #Shifts table does not exist
+                self.createHolidaysTable()
+                print("Holidays table successfully created")
 
             cursor.close()
         except sqlite3.Error as error:
@@ -94,5 +100,22 @@ class DatabaseController():
     def createShift(self, employeeID, startTime, endTime, date, breakTime):
         query = "INSERT INTO Shifts (employeeID, startTime, endTime, date, breakTime) VALUES ("
         query += str(employeeID) + ", \"" + startTime + "\", \"" + endTime + "\", \"" + date + "\", \"" +breakTime+ "\");"
+        self.executeQuery(query)
+        
+    def createHolidaysTable(self):
+        try:
+            self.connection.execute("""CREATE TABLE Holidays(
+                                    HolidayID integer primary key, 
+                                    EmployeeID integer NOT NULL,
+                                    startDate varchar(10) NOT NULL, 
+                                    endDate varchar(10) NOT NULL 
+                                    )""")
+        except sqlite3.Error as error:
+             print(error)
+             self.closeDatabase()
+    
+    def createHoliday(self, employeeID, startDate, endDate):
+        query = "INSERT INTO Holidays (HolidayID, EmployeeID, startDate, endDate) VALUES ("
+        query += str(employeeID) + ", \"" + startDate + "\", \"" + endDate + "\");"
         self.executeQuery(query)
 
