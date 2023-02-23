@@ -14,5 +14,5 @@ class ViewEmployeesWindow(Window):
     def createEmployeesTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make dimensions dynamic
         employeeData, columns = self.scheduler.getEmployeeData()
-        self.table.headers = columns
+        self.table.headers(columns)
         self.table.set_sheet_data(employeeData)

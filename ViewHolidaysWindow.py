@@ -13,5 +13,5 @@ class ViewHolidaysWindow(Window):
     def createHolidaysTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make dimensions dynamic
         holidayData, columns = self.scheduler.getHolidays()
-        self.table.headers = columns
+        self.table.headers(columns)
         self.table.set_sheet_data(holidayData)

@@ -12,10 +12,27 @@ class Scheduler:
         return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
 
     def addEmployee(self, firstName, surname, age, department):
-        self.DBcontroller.createEmployee(firstName, surname, age, department)
+        if len(firstName) > 20 or len(firstName) == 0:
+            return False
+        elif len(surname) > 20 or len(surname) == 0:
+            return False
+        elif age < 17:
+            return False
+        elif len(department) > 20 or len(department) == 0:
+            return False
+        return self.DBcontroller.createEmployee(firstName, surname, age, department)
 
     def addShift(self, employeeID, startTime, endTime, date, breakTime):
-        self.DBcontroller.createShift(employeeID, startTime, endTime, date, breakTime)
+        if len(startTime) != 5:
+            return False
+        elif len(endTime) != 5:
+            return False
+        elif len(date) != 10:
+            return False
+        elif len(breakTime) != 5:
+            return False
+        
+        return self.DBcontroller.createShift(employeeID, startTime, endTime, date, breakTime)
 
     def closeDatabase(self):
         self.DBcontroller.closeDatabase()

@@ -1,6 +1,7 @@
 import tkinter as tk
 from Window import *
 from AddEmployeeWindow import *
+from AddShiftWindow import *
 
 class AddWindow(Window):
     def __init__(self, master, geometry, scheduler):
@@ -27,6 +28,7 @@ class AddWindow(Window):
         self.addEmployeeWindow = AddEmployeeWindow(self.window, "500x300", self.scheduler)
 
     def createAddShiftWindow(self):
+        #self.addShiftWindow = AddShiftWindow(self.window, "500x300", self.scheduler)
         pass
 
     def createAddHolidayWindow(self):

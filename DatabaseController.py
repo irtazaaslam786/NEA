@@ -43,15 +43,17 @@ class DatabaseController():
         return resultSet
         
     def executeQuery(self, query):
+        success = True
         try:
             cursor = self.connection.cursor()
             cursor.execute(query)
             self.connection.commit()
         except sqlite3.Error as error:
             print(error)
-            self.closeDatabase()
+            success = False
         finally:
             cursor.close()
+            return success
 
     def closeDatabase(self):
         self.connection.close()
@@ -73,7 +75,7 @@ class DatabaseController():
     def createEmployee(self, firstName, surname, age, department):
         query = "INSERT INTO Employees (firstName, surname, age, department) VALUES (\""
         query += firstName + "\", \"" + surname + "\", " + str(age) + ", \"" + department + "\");"
-        self.executeQuery(query)
+        return self.executeQuery(query)
 
     def getColumnNames(self, query):
         cursor = self.connection.execute(query)
@@ -100,7 +102,7 @@ class DatabaseController():
     def createShift(self, employeeID, startTime, endTime, date, breakTime):
         query = "INSERT INTO Shifts (employeeID, startTime, endTime, date, breakTime) VALUES ("
         query += str(employeeID) + ", \"" + startTime + "\", \"" + endTime + "\", \"" + date + "\", \"" +breakTime+ "\");"
-        self.executeQuery(query)
+        return self.executeQuery(query)
         
     def createHolidaysTable(self):
         try:
@@ -117,5 +119,5 @@ class DatabaseController():
     def createHoliday(self, employeeID, startDate, endDate):
         query = "INSERT INTO Holidays (HolidayID, EmployeeID, startDate, endDate) VALUES ("
         query += str(employeeID) + ", \"" + startDate + "\", \"" + endDate + "\");"
-        self.executeQuery(query)
+        return self.executeQuery(query)
 
