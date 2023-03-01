@@ -54,3 +54,9 @@ class Scheduler:
     def deleteEmployee(self, employeeID):
         query = "DELETE FROM Employees WHERE EmployeeID = " + str(employeeID)
         return self.DBcontroller.executeQuery(query)
+
+    def deleteShift(self, shiftID):
+        pass
+    
+    def deleteHoliday(self, holidayID):
+        pass
