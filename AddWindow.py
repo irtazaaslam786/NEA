@@ -29,8 +29,7 @@ class AddWindow(Window):
         self.addEmployeeWindow = AddEmployeeWindow(self.window, "500x300", self.scheduler)
 
     def createAddShiftWindow(self):
-        #self.addShiftWindow = AddShiftWindow(self.window, "500x300", self.scheduler)
-        pass
+        self.addShiftWindow = AddShiftWindow(self.window, "500x300", self.scheduler)
 
     def createAddHolidayWindow(self):
         self.addHolidayWindow = AddHolidayWindow(self.window, "500x300", self.scheduler)
