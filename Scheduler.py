@@ -50,3 +50,7 @@ class Scheduler:
         ON Holidays.EmployeeID = Employees.EmployeeID
         ORDER BY Holidays.startDate ASC;"""
         return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
+
+    def deleteEmployee(self, employeeID):
+        query = "DELETE FROM Employees WHERE EmployeeID = " + str(employeeID)
+        return self.DBcontroller.executeQuery(query)

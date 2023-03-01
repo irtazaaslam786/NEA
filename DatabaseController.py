@@ -10,6 +10,7 @@ class DatabaseController():
         try:
             self.connection = sqlite3.connect(filePath)
             print("Database initialised")
+            self.connection.execute("PRAGMA foreign_keys = ON")
             cursor = self.connection.cursor()
             
             cursor.execute(CHECK_IF_EMPLOYEES_EXISTS)
@@ -89,7 +90,11 @@ class DatabaseController():
                                     StartTime varchar(5) NOT NULL, 
                                     endTime varchar(5) NOT NULL, 
                                     date varchar(10) NOT NULL, 
-                                    breakTime varchar(5) NOT NULL
+                                    breakTime varchar(5) NOT NULL,
+                                     CONSTRAINT fk_employee
+                                     FOREIGN KEY (EmployeeID)
+                                     REFERENCES Employees(EmployeeID)
+                                     ON DELETE CASCADE
                                     )""")
         except sqlite3.Error as error:
              print(error)
@@ -110,7 +115,11 @@ class DatabaseController():
                                     HolidayID integer primary key, 
                                     EmployeeID integer NOT NULL,
                                     startDate varchar(10) NOT NULL, 
-                                    endDate varchar(10) NOT NULL 
+                                    endDate varchar(10) NOT NULL,
+                                     CONSTRAINT fk_employee
+                                     FOREIGN KEY (EmployeeID)
+                                     REFERENCES Employees(EmployeeID)
+                                     ON DELETE CASCADE
                                     )""")
         except sqlite3.Error as error:
              print(error)
