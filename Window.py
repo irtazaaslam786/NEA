@@ -15,4 +15,4 @@ class Window:
         self.window.destroy()
 
     def getDate(self):
-        return datetime.today().strftime('%d:%m:%Y')
+        return datetime.today().strftime('%d/%m/%Y')
