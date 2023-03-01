@@ -2,6 +2,7 @@ import tkinter as tk
 from Window import *
 from AddEmployeeWindow import *
 from AddShiftWindow import *
+from AddHolidayWindow import *
 
 class AddWindow(Window):
     def __init__(self, master, geometry, scheduler):
@@ -32,4 +33,4 @@ class AddWindow(Window):
         pass
 
     def createAddHolidayWindow(self):
-        pass
+        self.addHolidayWindow = AddHolidayWindow(self.window, "500x300", self.scheduler)

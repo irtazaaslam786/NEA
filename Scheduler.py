@@ -34,6 +34,9 @@ class Scheduler:
         
         return self.DBcontroller.createShift(employeeID, startTime, endTime, date, breakTime)
 
+    def addHoliday(self, employeeID, startDate, endDate):
+        return self.DBcontroller.createHoliday(employeeID, startDate, endDate)
+
     def closeDatabase(self):
         self.DBcontroller.closeDatabase()
 

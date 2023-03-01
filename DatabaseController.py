@@ -117,7 +117,7 @@ class DatabaseController():
              self.closeDatabase()
     
     def createHoliday(self, employeeID, startDate, endDate):
-        query = "INSERT INTO Holidays (HolidayID, EmployeeID, startDate, endDate) VALUES ("
+        query = "INSERT INTO Holidays (EmployeeID, startDate, endDate) VALUES ("
         query += str(employeeID) + ", \"" + startDate + "\", \"" + endDate + "\");"
         return self.executeQuery(query)
 
