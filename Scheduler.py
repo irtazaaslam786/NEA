@@ -56,7 +56,13 @@ class Scheduler:
         query = "DELETE FROM Employees WHERE EmployeeID = " + str(employeeID)
         return self.DBcontroller.executeQuery(query)
 
-    def deleteShift(self, shiftID):
+    def deleteShift(self, firstName, lastName, startTime, endTime):
+        query = """SELECT Shifts.ShiftID 
+        FROM Shifts JOIN Employees ON Employees.EmployeeID = Shifts.ShiftID 
+        WHERE Employees.firstName = \"{0}\" AND Employees.surname = \"{1}\" AND Shifts.startTime = \"{2}\" AND Shifts.endTime = \"{3}\""""
+        query = query.format(firstName, lastName, startTime, endTime)
+        shiftID = self.DBcontroller.executeSelectQuery(query)[0][0]
+
         query = "DELETE FROM Shifts WHERE ShiftID = " + str(shiftID)
         return self.DBcontroller.executeQuery(query)
 
