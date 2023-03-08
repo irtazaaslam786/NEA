@@ -33,11 +33,6 @@ root.title("M&S Scheduler") #window title
 root.geometry('800x600')    #window dimensions
 scheduler = Scheduler(databaseAddress)  #create scheduler instance
 
-'''
-table = tksheet.Sheet(root, width = 750, height = 550) #creating table
-shiftData, columns = scheduler.getEmployeeData()
-table.headers(columns)
-table.set_sheet_data(shiftData) '''
 
 addDataButton = tk.Button(root, text="Add Data", command=createAddWindow)
 ViewButton = tk.Button(root, text="View", command=createViewWindow)

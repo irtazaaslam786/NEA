@@ -1,5 +1,6 @@
 from DatabaseController import *
 
+
 class Scheduler:
     def __init__(self, filename):
         self.DBcontroller = DatabaseController(filename)
@@ -31,7 +32,7 @@ class Scheduler:
             return False
         elif len(breakTime) != 5:
             return False
-        
+
         return self.DBcontroller.createShift(employeeID, startTime, endTime, date, breakTime)
 
     def addHoliday(self, employeeID, startDate, endDate):
@@ -56,7 +57,9 @@ class Scheduler:
         return self.DBcontroller.executeQuery(query)
 
     def deleteShift(self, shiftID):
-        pass
-    
+        query = "DELETE FROM Shifts WHERE ShiftID = " + str(shiftID)
+        return self.DBcontroller.executeQuery(query)
+
     def deleteHoliday(self, holidayID):
-        pass
+        query = "DELETE FROM Holidays WHERE HolidayID = " + str(holidayID)
+        return self.DBcontroller.executeQuery(query)

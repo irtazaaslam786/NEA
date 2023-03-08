@@ -1,5 +1,8 @@
 import tkinter as tk
 from Window import *
+from DeleteShiftWindow import *
+from DeleteEmployeeWindow import *
+from DeleteHolidayWindow import *
 
 class DeleteWindow(Window):
     def __init__(self, master, geometry, scheduler):
@@ -23,13 +26,10 @@ class DeleteWindow(Window):
         self.holidayButton.pack()
 
     def createDeleteEmployeeWindow(self):
-        #self.DeleteEmployeeWindow = AddEmployeeWindow(self.window, "500x300", self.scheduler)
-        pass
+        self.DeleteEmployeeWindow = DeleteEmployeeWindow(self.window, "500x300", self.scheduler)
 
     def createDeleteShiftWindow(self):
-        #self.DeleteShiftWindow = DeleteShiftWindow(self.window, "500x300", self.scheduler)
-        pass
+        self.DeleteShiftWindow = DeleteShiftWindow(self.window, "500x300", self.scheduler)
 
     def createDeleteHolidayWindow(self):
-        #self.DeleteHolidayWindow = DeleteHolidayWindow(self.window, "500x300", self.scheduler)
-        pass
+        self.DeleteHolidayWindow = DeleteHolidayWindow(self.window, "500x300", self.scheduler)
