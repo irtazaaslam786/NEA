@@ -52,7 +52,13 @@ class Scheduler:
         ORDER BY Holidays.startDate ASC;"""
         return self.DBcontroller.executeSelectQuery(query), self.DBcontroller.getColumnNames(query)
 
-    def deleteEmployee(self, employeeID):
+    def deleteEmployee(self, firstName, surname, department):
+        query = """SELECT EmployeeID 
+        FROM Employees 
+        WHERE firstName = \"{0}\" AND surname = \"{1}\" AND department = \"{2}\""""
+        query = query.format(firstName, surname, department)
+        employeeID = self.DBcontroller.executeSelectQuery(query)[0][0]
+
         query = "DELETE FROM Employees WHERE EmployeeID = " + str(employeeID)
         return self.DBcontroller.executeQuery(query)
 
@@ -66,6 +72,12 @@ class Scheduler:
         query = "DELETE FROM Shifts WHERE ShiftID = " + str(shiftID)
         return self.DBcontroller.executeQuery(query)
 
-    def deleteHoliday(self, holidayID):
+    def deleteHoliday(self, firstName, surname, startDate):
+        query = """SELECT Holidays.HolidayID 
+        FROM Employees JOIN Holidays ON Employees.EmployeeID = Holidays.EmployeeID 
+        WHERE Employees.firstName = \"{0}\" AND Employees.surname = \"{1}\" AND Holidays.startDate = \"{2}\""""
+        query = query.format(firstName, surname, startDate)
+        holidayID = self.DBcontroller.executeSelectQuery(query)[0][0]
+
         query = "DELETE FROM Holidays WHERE HolidayID = " + str(holidayID)
         return self.DBcontroller.executeQuery(query)
