@@ -10,6 +10,8 @@ class ViewHolidaysWindow(Window):
         self.createHolidaysTable()
         self.table.pack()
 
+        self.QuitButton.pack()
+
     def createHolidaysTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make dimensions dynamic
         holidayData, columns = self.scheduler.getHolidays()

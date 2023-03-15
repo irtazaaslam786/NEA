@@ -11,6 +11,8 @@ class ViewScheduleWindow(Window):
         self.createScheduleTable()
         self.table.pack()
 
+        self.QuitButton.pack()
+
     def createScheduleTable(self):
         self.table = tksheet.Sheet(self.window, width = 300, height = 200)  #make size dynamic
         shiftData, columns = self.scheduler.getShiftsForDay(self.getDate())

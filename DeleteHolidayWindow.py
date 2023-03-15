@@ -10,7 +10,9 @@ class DeleteHolidayWindow(Window):
         self.DeleteFirstNameWidget()
         self.DeleteSurNameWidget()
         self.DeleteStartDateWidget()
-        self.submitDataButton()
+        self.CreateSubmitDataButton()
+
+        self.QuitButton.grid(row = 4, column = 0)
 
     def DeleteFirstNameWidget(self):
         self.FirstNameLabel = tk.Label(self.window, text="Firstname:")
@@ -30,9 +32,9 @@ class DeleteHolidayWindow(Window):
         self.StartDateEntry = tk.Entry(self.window)
         self.StartDateEntry.grid(row = 2, column = 1)
 
-    def submitDataButton(self):
+    def CreateSubmitDataButton(self):
         self.submitDataButton = tk.Button(self.window, text="Submit Data", command=self.getData)
-        self.submitDataButton.grid(row = 3, column = 1)
+        self.submitDataButton.grid(row = 3, column = 0)
 
     def getData(self):
         firstname = self.FirstNameEntry.get()

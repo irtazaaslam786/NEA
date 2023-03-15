@@ -12,7 +12,9 @@ class DeleteShiftWindow(Window):
         self.DeleteSurNameWidget()
         self.DeleteStartTimeWidget()
         self.DeleteEndTimeWidget()
-        self.submitDataButton()
+        self.CreateSubmitDataButton()
+
+        self.QuitButton.grid(row = 5, column = 0)
 
     def DeleteFirstNameWidget(self):
         self.FirstNameLabel = tk.Label(self.window, text="First Name :")
@@ -38,7 +40,7 @@ class DeleteShiftWindow(Window):
         self.EndTimeEntry = tk.Entry(self.window)
         self.EndTimeEntry.grid(row=3, column=1)
 
-    def submitDataButton(self):
+    def CreateSubmitDataButton(self):
         self.submitDataButton = tk.Button(self.window, text="Submit Data", command=self.getData)
         self.submitDataButton.grid(row=4, column=0)
 

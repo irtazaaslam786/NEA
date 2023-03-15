@@ -14,6 +14,8 @@ class ViewWindow(Window):
         self.createEmployeesButton()
         self.createHolidayButton()
 
+        self.QuitButton.pack()
+
     def createSchedulerButton(self):
         self.scheduleButton = tk.Button(self.window, text="View Schedule", command=self.createViewScheduleWindow)
         self.scheduleButton.pack()

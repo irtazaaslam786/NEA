@@ -13,6 +13,8 @@ class DeleteWindow(Window):
         self.createDeleteShiftButton()
         self.createDeleteHolidayButton()
 
+        self.QuitButton.pack()
+
     def createDeleteEmployeeButton(self):
         self.employeeButton = tk.Button(self.window, text="Delete Employee", command=self.createDeleteEmployeeWindow)
         self.employeeButton.pack()

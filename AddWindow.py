@@ -13,6 +13,8 @@ class AddWindow(Window):
         self.createAddShiftButton()
         self.createAddHolidayButton()
 
+        self.QuitButton.pack()
+
     def createAddEmployeeButton(self):
         self.employeeButton = tk.Button(self.window, text="Add Employee", command=self.createAddEmployeeWindow)
         self.employeeButton.pack()

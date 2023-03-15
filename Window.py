@@ -9,6 +9,7 @@ class Window:
         self.window = tk.Toplevel(self.master)
         self.window.geometry(geometry)
         self.window.protocol("WM_DELETE_WINDOW", self.closeWindow)
+        self.QuitButton = tk.Button(self.window, text="Quit", command=self.closeWindow)
 
     def closeWindow(self):
         self.master.deiconify()

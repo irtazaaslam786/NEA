@@ -13,6 +13,8 @@ class AddShiftWindow(Window):
         self.addDateWidget()
         self.addBreakTimeWidget()
         self.submitDataButton()
+
+        self.QuitButton.grid(row = 6, column = 0)
         
     def addEmployeeIdWidget(self):
         self.EmployeeIdLabel = tk.Label(self.window, text="Employee Id:")

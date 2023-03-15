@@ -13,6 +13,8 @@ class AddHolidayWindow(Window):
         self.addEndDateWidgets()
         self.submitDataButton()
 
+        self.QuitButton.grid(row = 4, column = 0)
+
     def addEmployeeIDWidgets(self):
         self.employeeIDLabel = tk.Label(self.window, text="Employee ID:")
         self.employeeIDLabel.grid(row = 0, column = 0)

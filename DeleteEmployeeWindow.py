@@ -12,6 +12,8 @@ class DeleteEmployeeWindow(Window):
         self.DeleteDepartmentWidget()
         self.submitDataButton()
 
+        self.QuitButton.grid(row = 4, column = 0)
+
     def DeleteFirstNameWidget(self):
         self.FirstNameLabel = tk.Label(self.window, text="Firstname:")
         self.FirstNameLabel.grid(row = 0, column = 0)
@@ -32,7 +34,7 @@ class DeleteEmployeeWindow(Window):
 
     def submitDataButton(self):
         self.submitDataButton = tk.Button(self.window, text="Submit Data", command=self.getData)
-        self.submitDataButton.grid(row = 3, column = 1)
+        self.submitDataButton.grid(row = 3, column = 0)
 
     def getData(self):
         firstname = self.FirstNameEntry.get()

@@ -13,6 +13,8 @@ class AddEmployeeWindow(Window):
         self.addDepartmentWidgets()
         self.submitDataButton()
 
+        self.QuitButton.grid(row = 5, column = 0)
+
     def addFirstNameWidgets(self):
         self.firstNameLabel = tk.Label(self.window, text="First name:")
         self.firstNameLabel.grid(row = 0, column = 0)
