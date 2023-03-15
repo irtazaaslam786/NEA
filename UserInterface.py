@@ -17,7 +17,6 @@ def showWindow(oldWindow):
     root.deiconify()
     oldWindow.destroy()
 
-#add widget functionality here
 def createAddWindow():
     addWindow = AddWindow(root, "500x300", scheduler)
 
@@ -27,24 +26,28 @@ def createViewWindow():
 def createDeleteWindow():
     deleteWindow = DeleteWindow(root, "500x300", scheduler)
 
-root = tk.Tk() #root window
+def closeProgram():
+    root.destroy()
+    scheduler.closeDatabase() 
+
+root = tk.Tk() 
 root.protocol("WM_DELETE_WINDOW", main_exit_handler)
-root.title("M&S Scheduler") #window title
-root.geometry('800x600')    #window dimensions
-scheduler = Scheduler(databaseAddress)  #create scheduler instance
+root.title("M&S Scheduler") 
+root.geometry('800x600')    
+scheduler = Scheduler(databaseAddress)  
 
 
 addDataButton = tk.Button(root, text="Add Data", command=createAddWindow)
 ViewButton = tk.Button(root, text="View", command=createViewWindow)
 DeleteButton = tk.Button(root, text="Delete", command=createDeleteWindow)
+QuitButton = tk.Button(root, text= "Quit", command=closeProgram)
 
 
-#add widgets here
 addDataButton.pack()
 ViewButton.pack()
 DeleteButton.pack()
 
-#table.grid()    #snap table to grid
+
 root.mainloop()
 
 
