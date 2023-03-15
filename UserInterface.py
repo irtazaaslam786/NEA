@@ -46,7 +46,7 @@ QuitButton = tk.Button(root, text= "Quit", command=closeProgram)
 addDataButton.pack()
 ViewButton.pack()
 DeleteButton.pack()
-
+QuitButton.pack()
 
 root.mainloop()
 
