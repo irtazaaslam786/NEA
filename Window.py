@@ -5,6 +5,7 @@ class Window:
     def __init__(self, master, geometry, scheduler):
         self.master = master
         self.scheduler = scheduler
+        self.geometry = geometry
         self.master.withdraw()
         self.window = tk.Toplevel(self.master)
         self.window.geometry(geometry)

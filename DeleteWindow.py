@@ -28,10 +28,10 @@ class DeleteWindow(Window):
         self.holidayButton.pack()
 
     def createDeleteEmployeeWindow(self):
-        self.DeleteEmployeeWindow = DeleteEmployeeWindow(self.window, "500x300", self.scheduler)
+        self.DeleteEmployeeWindow = DeleteEmployeeWindow(self.window, self.geometry, self.scheduler)
 
     def createDeleteShiftWindow(self):
-        self.DeleteShiftWindow = DeleteShiftWindow(self.window, "500x300", self.scheduler)
+        self.DeleteShiftWindow = DeleteShiftWindow(self.window, self.geometry, self.scheduler)
 
     def createDeleteHolidayWindow(self):
-        self.DeleteHolidayWindow = DeleteHolidayWindow(self.window, "500x300", self.scheduler)
+        self.DeleteHolidayWindow = DeleteHolidayWindow(self.window, self.geometry, self.scheduler)

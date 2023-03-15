@@ -21,15 +21,15 @@ def showWindow(oldWindow):
 
 
 def createAddWindow():
-    addWindow = AddWindow(root, "500x300", scheduler)
+    addWindow = AddWindow(root, "1200x800", scheduler)
 
 
 def createViewWindow():
-    viewWindow = ViewWindow(root, "500x300", scheduler)
+    viewWindow = ViewWindow(root, "1200x800", scheduler)
 
 
 def createDeleteWindow():
-    deleteWindow = DeleteWindow(root, "500x300", scheduler)
+    deleteWindow = DeleteWindow(root, "1200x800", scheduler)
 
 
 def closeProgram():
@@ -40,7 +40,7 @@ def closeProgram():
 root = tk.Tk()
 root.protocol("WM_DELETE_WINDOW", main_exit_handler)
 root.title("M&S Scheduler")
-root.geometry('800x600')
+root.geometry('1200x800')
 scheduler = Scheduler(databaseAddress)
 
 addDataButton = tk.Button(root, text="Add Data", command=createAddWindow)

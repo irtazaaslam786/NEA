@@ -21,7 +21,7 @@ class ViewWindow(Window):
         self.scheduleButton.pack()
 
     def createViewScheduleWindow(self):
-        viewScheduleWindow = ViewScheduleWindow(self.window, "500x300", self.scheduler)
+        viewScheduleWindow = ViewScheduleWindow(self.window, self.geometry, self.scheduler)
 
     def createEmployeesButton(self):
         self.employeesButton = tk.Button(self.window, text="View Employees", command=self.createViewEmployeesWindow)
@@ -32,7 +32,7 @@ class ViewWindow(Window):
         self.holidayButton.pack()
 
     def createViewHolidayWindow(self):
-        viewHolidayWindow = ViewHolidaysWindow(self.window, "500x300", self.scheduler)
+        viewHolidayWindow = ViewHolidaysWindow(self.window, self.geometry, self.scheduler)
 
     def createViewEmployeesWindow(self):
-        viewEmployeesWindow = ViewEmployeesWindow(self.window, "500x300", self.scheduler)
+        viewEmployeesWindow = ViewEmployeesWindow(self.window, self.geometry, self.scheduler)

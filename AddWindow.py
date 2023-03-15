@@ -28,10 +28,10 @@ class AddWindow(Window):
         self.holidayButton.pack()
 
     def createAddEmployeeWindow(self):
-        self.addEmployeeWindow = AddEmployeeWindow(self.window, "500x300", self.scheduler)
+        self.addEmployeeWindow = AddEmployeeWindow(self.window, self.geometry, self.scheduler)
 
     def createAddShiftWindow(self):
-        self.addShiftWindow = AddShiftWindow(self.window, "500x300", self.scheduler)
+        self.addShiftWindow = AddShiftWindow(self.window, self.geometry, self.scheduler)
 
     def createAddHolidayWindow(self):
-        self.addHolidayWindow = AddHolidayWindow(self.window, "500x300", self.scheduler)
+        self.addHolidayWindow = AddHolidayWindow(self.window, self.geometry, self.scheduler)

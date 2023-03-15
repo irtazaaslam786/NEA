@@ -40,7 +40,7 @@ class DeleteHolidayWindow(Window):
         firstname = self.FirstNameEntry.get()
         surname = self.SurNameEntry.get()
         startdate = self.StartDateEntry.get()
-        successful = self.scheduler.deleteEmployee(firstname, surname, startdate)
+        successful = self.scheduler.deleteHoliday(firstname, surname, startdate)
         if not successful:
             messagebox.showinfo("Invalid Data", "Please check your input, you have entered invalid data!")
         else:

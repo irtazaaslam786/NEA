@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkcalendar import Calendar, DateEntry
 
 from Window import *
 
@@ -24,8 +25,8 @@ class AddHolidayWindow(Window):
     def addStartDateWidgets(self):
         self.startDateLabel = tk.Label(self.window, text="Start date:")
         self.startDateLabel.grid(row = 1, column = 0)
-        self.startDateEntry = tk.Entry(self.window)
-        self.startDateEntry.grid(row = 1, column = 1)
+        self.startDatePicker = Calendar(self.window, selectmode = 'day', year = 2023, month = 3)
+        self.startDatePicker.grid(row = 1, column = 1)
 
     def addEndDateWidgets(self):
         self.endDateLabel = tk.Label(self.window, text="End date:")
