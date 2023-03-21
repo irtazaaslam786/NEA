@@ -1,0 +1,26 @@
+#Import the required libraries
+from tkinter import *
+import webbrowser
+
+#Create an instance of tkinter frame
+win = Tk()
+win.geometry("750x250")
+
+#Define a callback function
+def callback(url):
+   webbrowser.open_new_tab(url)
+
+#Create a Label to display the link
+link = Label(win, text="www.marksandspencer.com",font=('Helveticabold', 15), fg="blue", cursor="hand2")
+link.pack()
+link.bind("<Button-1>", lambda e:
+callback("https://www.marksandspencer.com"))
+
+win.mainloop()
+
+#i was just looking at this and thought we could add it in to the start if the user wants to get to the website from the scheduler.abs
+# would prefer to have it in the same style as the other ones that are already part of the project. 
+# was also thinking about making a start page like this so it has a large mns logo in the middle of the screen. then they can click that big logo and it can direct them to the mns website. if they are not looking to go to the mns website, there should be a button below the logo that can take them into the add view delete buttons ect. 
+#or we can put the link on the main page where the other buttons are and just have it at the bottom corner. 
+# link to where i found the code / idea to make this: https://www.tutorialspoint.com/how-to-create-a-hyperlink-with-a-label-in-tkinter#:~:text=In%20order%20to%20add%20a,browser%20to%20follow%20the%20link.
+# i was also thinking that if there is not a designated start page then we should put a title or a logo on the user interface just to add a bit. 
